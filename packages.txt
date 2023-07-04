@@ -1,1 +1,4 @@
-numpy
+python-numpy
+python-imgsim
+python3-opencv
+python-torchvision

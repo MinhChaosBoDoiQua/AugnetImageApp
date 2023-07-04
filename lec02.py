@@ -1,9 +1,14 @@
 import streamlit as st
+import pandas as pd
 import numpy as np
+from io import StringIO
+import lzma
 import imgsim
 import cv2
 import glob
-    
+import os 
+import time
+
 red = np.array([255,0,0])
 yellow = np.array([255,255,0])
 blue = np.array([0,0,255])
@@ -72,13 +77,14 @@ if uploaded_file is not None:
     target = vectorize(opencv_image)
     # st.write(np.shape(target))
     # st.write(os.getcwd())
-    # os.chdir("./images")
+    os.chdir("./images")
     distance = []
     with st.spinner('ちょっと待ってください！211つの画像のあるデータベースからユークリッド距離が一番近い画像を出力します'):
         with st.empty():
             for i,file in enumerate(glob.glob("*.png")):
                 distance.append(np.linalg.norm(target - vectorize(cv2.imread(file))))
                 st.write("ファイル " + str(i+1) + " を読み込んでいます")
+                st.write(distance)
     
     distance = np.array(distance)
     img_index = np.argmin(distance)

@@ -1,14 +1,18 @@
 import streamlit as st
-import pandas as pd
 import numpy as np
-from io import StringIO
-import lzma
 import imgsim
 import cv2
 import glob
-import os 
-import time
+import subprocess
+import sys
 
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+install('numpy')
+install('imgsim')
+install('cv2')
+install('torchvision')
+    
 red = np.array([255,0,0])
 yellow = np.array([255,255,0])
 blue = np.array([0,0,255])

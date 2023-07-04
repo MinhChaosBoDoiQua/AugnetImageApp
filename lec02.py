@@ -3,15 +3,6 @@ import numpy as np
 import imgsim
 import cv2
 import glob
-import subprocess
-import sys
-
-def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-install('numpy')
-install('imgsim')
-install('cv2')
-install('torchvision')
     
 red = np.array([255,0,0])
 yellow = np.array([255,255,0])

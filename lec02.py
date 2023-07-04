@@ -77,14 +77,17 @@ if uploaded_file is not None:
     target = vectorize(opencv_image)
     # st.write(np.shape(target))
     # st.write(os.getcwd())
-    os.chdir("./images")
+    os.chdir("./")
+    try:
+        os.chdir("./images")
+    except:
+        st.write("Loading images")
     distance = []
     with st.spinner('ちょっと待ってください！211つの画像のあるデータベースからユークリッド距離が一番近い画像を出力します'):
         with st.empty():
             for i,file in enumerate(glob.glob("*.png")):
                 distance.append(np.linalg.norm(target - vectorize(cv2.imread(file))))
                 st.write("ファイル " + str(i+1) + " を読み込んでいます")
-                st.write(distance)
     
     distance = np.array(distance)
     img_index = np.argmin(distance)
